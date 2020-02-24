@@ -22,7 +22,9 @@ public class LibraryFrontEnd {
         JCheckBox AbleToCheck = new JCheckBox("book check out feature");
         JLabel bookNumberLabel = new JLabel("Which Book are you changing? ");
         JLabel changeNameLabel = new JLabel("Change Book Name: ");
-        CardLayout c = new CardLayout();
+        JPanel panel = new JPanel();
+        JPanel panel2 = new JPanel();
+        JTabbedPane pane = new JTabbedPane();
 
         showbooks.setBounds(50, 50, 300, 100);
         addBook.setBounds(50, 200, 300, 50);
@@ -32,6 +34,7 @@ public class LibraryFrontEnd {
         AbleToCheck.setBounds(200, 160, 300, 30);
         bookNumberLabel.setBounds(50, 320, 300, 30);
         changeNameLabel.setBounds(50, 420, 300, 30);
+        pane.setBounds(0,0, 1000, 1000);
 
 
 
@@ -78,16 +81,22 @@ public class LibraryFrontEnd {
             }
         });
 
-        f.add(changeNameLabel);
-        f.add(bookNumberLabel);
-        f.add(showbooks);
-        f.add(addBook);
-        f.add(changeBook);
-        f.add(whichBook);
-        f.add(changeName);
-        f.add(AbleToCheck);
+        pane.add("Main", panel);
+        pane.add("Side", panel2);
+
+
+        panel.add(changeNameLabel);
+        panel.add(bookNumberLabel);
+        panel.add(showbooks);
+        panel.add(addBook);
+        panel.add(changeBook);
+        panel.add(whichBook);
+        panel.add(changeName);
+        panel.add(AbleToCheck);
+        f.add(pane);
         f.setSize(1000,1000);
         f.setLayout(null);
+        panel.setLayout(null);
         f.setVisible(true);
 
 
