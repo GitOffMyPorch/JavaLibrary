@@ -1,0 +1,8 @@
+Version History:
+
+1.0 - Created JavaLibrary class and JavaFrontEnd class with addBook button, changeBook button, and showbook field.
+1.1 - Added a README.md file.
+1.2 - Added a TabbedPane interface with JPanels.
+2.0 - Added functionality for TabbedPane and JPanels, added deleteBook button, search function, and a new LibraryBook
+      field called authorName.
+2.1 - Added a changelog
