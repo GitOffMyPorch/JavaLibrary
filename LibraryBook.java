@@ -3,12 +3,14 @@ public class LibraryBook {
     String bookName;
     int bookNumber;
     boolean ableToBeCheckedOut;
+    String authorName;
 
     //constructor that gives a LibraryBook object its attributes
-    LibraryBook(String bookName, int bookNumber, boolean ableToBeCheckedOut) {
+    LibraryBook(String bookName, int bookNumber, boolean ableToBeCheckedOut, String authorName) {
         this.bookName = bookName;
         this.bookNumber = bookNumber;
         this.ableToBeCheckedOut = ableToBeCheckedOut;
+        this.authorName = authorName;
     }
 
     //static display info method
@@ -34,5 +36,7 @@ public class LibraryBook {
 
     //method that changes book name
     void change_book_name(String bookName) { this.bookName = bookName; }
+
+    void change_author_name(String authorName) { this.authorName = authorName; }
 
 }
