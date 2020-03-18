@@ -3,6 +3,10 @@ Version History:
 1.0 - Created JavaLibrary class and JavaFrontEnd class with addBook button, changeBook button, and showbook field.
 1.1 - Added a README.md file.
 1.2 - Added a TabbedPane interface with JPanels.
-2.0 - Added functionality for TabbedPane and JPanels, added deleteBook button, search function, and a new LibraryBook
+1.3 - Added functionality for TabbedPane and JPanels, added deleteBook button, search function, and a new LibraryBook
       field called authorName.
-2.1 - Added a changelog
+1.4 - Added a changelog
+2.0 - Added Utility class that contains usingBufferedWriter and usingReader methods for saving/loading books. Added 
+      saveBook button and loadBook button. Added showScroll and searchScroll (which are JScrollPanes) to allow the
+      JTextAreas to scroll when the book data overflows the box. Updated search function to allow all books that contain
+      the selected keyword to be returned in the searchArray JTextArea.

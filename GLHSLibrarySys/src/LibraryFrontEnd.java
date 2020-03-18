@@ -1,5 +1,4 @@
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.*;
@@ -17,16 +16,23 @@ public class LibraryFrontEnd {
     AbleToCheck to the changeBook action listener */
     static boolean state;
 
+    // make an ArrayList to store book objects
+     static ArrayList<LibraryBook> book = new ArrayList<LibraryBook>();
+
     // main function start
     public static void main(String args[]) {
         // add a JFrame object containing all the components
         JFrame f = new JFrame("Library Database");
-        // make an ArrayList to store book objects
-        ArrayList<LibraryBook> book = new ArrayList<LibraryBook>();
         // object for displaying a list of all the current books
         JTextArea showbooks = new JTextArea();
+        // make the showbooks scrollable
+        JScrollPane showScroll = new JScrollPane(showbooks);
         // make an addBook button
         JButton addBook = new JButton("Add a Book");
+        // make a saveBooks button
+        JButton saveBooks = new JButton("Save");
+        // make a loadBooks button
+        JButton loadBooks = new JButton("Load");
         // make a deleteBook button
         JButton deleteBook = new JButton("Delete a Book");
         // make a changeBook button
@@ -53,11 +59,15 @@ public class LibraryFrontEnd {
         JTabbedPane pane = new JTabbedPane();
         // create an input field for the search button
         JTextArea searchArray =  new JTextArea("");
+        // make the searchArray scrollable
+        JScrollPane searchScroll = new JScrollPane(searchArray);
         // create a search button that searches the ArrayList
         JButton search = new JButton("Search");
 
         // sets the bounds of all the components
-        showbooks.setBounds(50, 50, 300, 100);
+        loadBooks.setBounds(50, 680, 300, 50);
+        saveBooks.setBounds(50, 630, 300, 50);
+        showScroll.setBounds(50, 50, 300, 100);
         addBook.setBounds(50, 200, 300, 50);
         changeBook.setBounds(50, 250, 300,50);
         deleteBook.setBounds(50, 580, 300, 50);
@@ -68,9 +78,10 @@ public class LibraryFrontEnd {
         changeNameLabel.setBounds(50, 420, 300, 30);
         changeAuthorLabel.setBounds(50, 500, 300, 30);
         changeAuthor.setBounds(50, 530, 300, 30);
-        searchArray.setBounds(50,100, 300, 100);
+        searchScroll.setBounds(50,100, 300, 100);
         search.setBounds(50, 200, 300, 50);
         pane.setBounds(0,0, 1000, 1000);
+
 
         /* When the addBook button is clicked it adds an empty
         book object and displays the book name in the showbooks
@@ -85,6 +96,36 @@ public class LibraryFrontEnd {
                     old = old + i + ": " + book.get(i).bookName + ", ";
                     showbooks.setText(old);
                     showbooks.setLineWrap(true);
+                }
+            }
+        });
+
+        /* When saveBooks button is pressed take the contents of
+         book ArrayList and put it in a file called "data" */
+        saveBooks.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    Utility.usingBufferedWriter(book);
+                } catch (java.io.IOException a) {
+                    System.out.println("it didn't work");
+                }
+            }
+        });
+
+        /* When loadBooks button is pressed take the contents
+         "data" and load it into the book ArrayList */
+        loadBooks.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    Utility.usingReader();
+                    String old = "";
+                    for(int i = 0; i < book.size(); i++) {
+                        old = old + i + ": " + book.get(i).bookName + ", ";
+                        showbooks.setText(old);
+                        showbooks.setLineWrap(true);
+                    }
+                } catch (java.io.IOException a) {
+                    System.out.println("2 it didn't work");
                 }
             }
         });
@@ -140,8 +181,9 @@ public class LibraryFrontEnd {
         search.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
                 String i = searchArray.getText();
+                searchArray.setText("");
                 for (int j = 0; j < book.size(); j++) {
-                    if (i.equals(book.get(j).bookName)) {
+                    if (book.get(j).bookName.contains(i)) {
                         String oldText;
                         oldText = "Book Name: " + book.get(j).bookName + " \n";
                         oldText = oldText + "Author Name: " + book.get(j).authorName + " \n";
@@ -151,7 +193,7 @@ public class LibraryFrontEnd {
                         Boolean b1 = book.get(j).ableToBeCheckedOut;
                         String s2 = Boolean.toString(b1);
                         oldText = oldText + "Able to be checked out: " + s2 + " \n";
-                        searchArray.setText(oldText);
+                        searchArray.append(oldText);
                         searchArray.setLineWrap(true);
                     }
                 }
@@ -183,7 +225,7 @@ public class LibraryFrontEnd {
         // add components under the "Add Books" tab
         panel.add(changeNameLabel);
         panel.add(bookNumberLabel);
-        panel.add(showbooks);
+        panel.add(showScroll);
         panel.add(addBook);
         panel.add(deleteBook);
         panel.add(changeBook);
@@ -192,9 +234,11 @@ public class LibraryFrontEnd {
         panel.add(AbleToCheck);
         panel.add(changeAuthorLabel);
         panel.add(changeAuthor);
+        panel.add(saveBooks);
+        panel.add(loadBooks);
 
         // add compnents under the "Search Books" tab
-        panel2.add(searchArray);
+        panel2.add(searchScroll);
         panel2.add(search);
 
         /* add the TabbedPane (which contains the panels that
