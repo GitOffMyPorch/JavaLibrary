@@ -257,6 +257,9 @@ public class LibraryFrontEnd {
 
         // make the JFrame window visible
         f.setVisible(true);
+
+        // close the application when the window is closed
+        f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 
 }
