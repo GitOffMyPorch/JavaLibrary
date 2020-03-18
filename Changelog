@@ -10,3 +10,4 @@ Version History:
       saveBook button and loadBook button. Added showScroll and searchScroll (which are JScrollPanes) to allow the
       JTextAreas to scroll when the book data overflows the box. Updated search function to allow all books that contain
       the selected keyword to be returned in the searchArray JTextArea.
+2.0.1 - bug fix, application would not close when window was closed.
