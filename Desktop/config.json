@@ -1,9 +1,0 @@
-{
-  "classPath": [
-    "GLHSLibrary.jar"
-  ],
-  "mainClass": "LibraryFrontEnd",
-  "vmArgs": [
-    "-Xmx1G"
-  ]
-}
