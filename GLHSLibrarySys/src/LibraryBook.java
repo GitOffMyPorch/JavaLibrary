@@ -1,9 +1,9 @@
 public class LibraryBook {
 
-    String bookName;
-    int bookNumber;
-    boolean ableToBeCheckedOut;
-    String authorName;
+    private String bookName;
+    private int bookNumber;
+    private boolean ableToBeCheckedOut;
+    private String authorName;
 
     //constructor that gives a LibraryBook object its attributes
     LibraryBook(String bookName, int bookNumber, boolean ableToBeCheckedOut, String authorName) {
@@ -24,19 +24,27 @@ public class LibraryBook {
         }
     }
 
-    //method that changes book number
-    void change_book_number(int bookNumber) {
-        this.bookNumber = bookNumber;
-    }
+    //getter for bookName
+    String returnBookName() { return(bookName);}
 
-    //method that changes checked out functionality
-    void change_checked_out(boolean ableToBeCheckedOut) {
+    //getter for bookNumber
+    int returnBookNumber() { return(bookNumber);}
+
+    //getter for ableToBeCheckedOut
+    boolean returnAbleToBeCheckedOut() { return(ableToBeCheckedOut);}
+
+    //getter for authorName
+    String returnAuthorName() { return(authorName);}
+
+    //setter for ableToBeCheckedOut
+    void changeCheckedOut(boolean ableToBeCheckedOut) {
         this.ableToBeCheckedOut = ableToBeCheckedOut;
     }
 
-    //method that changes book name
-    void change_book_name(String bookName) { this.bookName = bookName; }
+    //setter for bookName
+    void changeBookName(String bookName) { this.bookName = bookName; }
 
-    void change_author_name(String authorName) { this.authorName = authorName; }
+    //setter for authorName
+    void changeAuthorName(String authorName) { this.authorName = authorName; }
 
 }
