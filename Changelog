@@ -11,3 +11,4 @@ Version History:
       JTextAreas to scroll when the book data overflows the box. Updated search function to allow all books that contain
       the selected keyword to be returned in the searchArray JTextArea.
 2.0.1 - bug fix, application would not close when window was closed.
+2.0.2 - minor internal restructure of code to add maintainability and readability.

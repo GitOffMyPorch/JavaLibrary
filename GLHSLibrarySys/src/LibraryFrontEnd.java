@@ -38,11 +38,11 @@ public class LibraryFrontEnd {
         // make a changeBook button
         JButton changeBook = new JButton("Change a Book");
         // make a field for bookNumber which can be used for changing/deleting book objects
-        JTextField whichBook = new JTextField("book number update");
+        JTextField whichBook = new JTextField();
         // make a field for changing the book name
-        JTextField changeName = new JTextField("book name change");
+        JTextField changeName = new JTextField();
         // make a field for changing the author name
-        JTextField changeAuthor = new JTextField("author name change");
+        JTextField changeAuthor = new JTextField();
         // make a checkbox for the AbleToBeCheckedOut functionality
         JCheckBox AbleToCheck = new JCheckBox("book check out feature");
         // make a label that says "Which Book are you changing/deleting? "
@@ -52,14 +52,14 @@ public class LibraryFrontEnd {
         // make a label that says "Change Author Name: "
         JLabel changeAuthorLabel = new JLabel("Change Author Name: ");
         // create a JPanel object that goes inside the TabbedPane
-        JPanel panel = new JPanel();
+        JPanel addBooksTab = new JPanel();
         // create a second JPanel object that goes inside TabbedPane
-        JPanel panel2 = new JPanel();
+        JPanel searchBooksTab = new JPanel();
         // create a TabbedPane for better organization
         JTabbedPane pane = new JTabbedPane();
         // create an input field for the search button
         JTextArea searchArray =  new JTextArea("");
-        // make the searchArray scrollable
+        // make the searchArray scrollablesearchArray
         JScrollPane searchScroll = new JScrollPane(searchArray);
         // create a search button that searches the ArrayList
         JButton search = new JButton("Search");
@@ -91,12 +91,7 @@ public class LibraryFrontEnd {
             public void actionPerformed(ActionEvent e) {
                 book.add(new LibraryBook("null", x, false, "null"));
                 x++;
-                String old = "";
-                for(int i = 0; i < book.size(); i++) {
-                    old = old + i + ": " + book.get(i).bookName + ", ";
-                    showbooks.setText(old);
-                    showbooks.setLineWrap(true);
-                }
+                Utility.updateShowBooksTextArea(showbooks);
             }
         });
 
@@ -118,12 +113,7 @@ public class LibraryFrontEnd {
             public void actionPerformed(ActionEvent e) {
                 try {
                     Utility.usingReader();
-                    String old = "";
-                    for(int i = 0; i < book.size(); i++) {
-                        old = old + i + ": " + book.get(i).bookName + ", ";
-                        showbooks.setText(old);
-                        showbooks.setLineWrap(true);
-                    }
+                    Utility.updateShowBooksTextArea(showbooks);
                 } catch (java.io.IOException a) {
                     System.out.println("2 it didn't work");
                 }
@@ -140,13 +130,7 @@ public class LibraryFrontEnd {
                 String i = whichBook.getText();
                 int a = Integer.parseInt(i);
                 book.remove(a);
-
-                String old = "";
-                for (int j = 0; j < book.size(); j++) {
-                    old = old + j + ": " + book.get(j).bookName + ", ";
-                    showbooks.setText(old);
-                    showbooks.setLineWrap(true);
-                }
+                Utility.updateShowBooksTextArea(showbooks);
             }
             });
 
@@ -160,16 +144,11 @@ public class LibraryFrontEnd {
             public void actionPerformed(ActionEvent e) {
                 String i = whichBook.getText();
                 int a = Integer.parseInt(i);
-                book.get(a).change_book_name(changeName.getText());
-                book.get(a).change_author_name(changeAuthor.getText());
-                book.get(a).change_checked_out(state);
+                book.get(a).changeBookName(changeName.getText());
+                book.get(a).changeAuthorName(changeAuthor.getText());
+                book.get(a).changeCheckedOut(state);
 
-                String old = "";
-                for(int j = 0; j < book.size(); j++) {
-                    old = old + j + ": " + book.get(j).bookName + ", ";
-                    showbooks.setText(old);
-                    showbooks.setLineWrap(true);
-                }
+                Utility.updateShowBooksTextArea(showbooks);
             }
         });
 
@@ -180,24 +159,9 @@ public class LibraryFrontEnd {
          */
         search.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
-                String i = searchArray.getText();
+                String input = searchArray.getText();
                 searchArray.setText("");
-                for (int j = 0; j < book.size(); j++) {
-                    if (book.get(j).bookName.contains(i)) {
-                        String oldText;
-                        oldText = "Book Name: " + book.get(j).bookName + " \n";
-                        oldText = oldText + "Author Name: " + book.get(j).authorName + " \n";
-                        int i1 = book.get(j).bookNumber;
-                        String s1 = Integer.toString(i1);
-                        oldText = oldText + "Book Number: " + s1 + " \n";
-                        Boolean b1 = book.get(j).ableToBeCheckedOut;
-                        String s2 = Boolean.toString(b1);
-                        oldText = oldText + "Able to be checked out: " + s2 + " \n";
-                        searchArray.append(oldText);
-                        searchArray.setLineWrap(true);
-                    }
-                }
-
+                Utility.searchAnArrayForText(input, book, searchArray);
             }
         });
 
@@ -210,7 +174,7 @@ public class LibraryFrontEnd {
             public void itemStateChanged(ItemEvent e) {
                 String i = whichBook.getText();
                 int a = Integer.parseInt(i);
-                if (book.get(a).ableToBeCheckedOut == true) {
+                if (book.get(a).returnAbleToBeCheckedOut() == true) {
                     state = false;
                 } else {
                     state = true;
@@ -219,27 +183,27 @@ public class LibraryFrontEnd {
         });
 
         // add panes to the TabbedPane
-        pane.add("Add Books", panel);
-        pane.add("Search Books", panel2);
+        pane.add("Add Books", addBooksTab);
+        pane.add("Search Books", searchBooksTab);
 
         // add components under the "Add Books" tab
-        panel.add(changeNameLabel);
-        panel.add(bookNumberLabel);
-        panel.add(showScroll);
-        panel.add(addBook);
-        panel.add(deleteBook);
-        panel.add(changeBook);
-        panel.add(whichBook);
-        panel.add(changeName);
-        panel.add(AbleToCheck);
-        panel.add(changeAuthorLabel);
-        panel.add(changeAuthor);
-        panel.add(saveBooks);
-        panel.add(loadBooks);
+        addBooksTab.add(changeNameLabel);
+        addBooksTab.add(bookNumberLabel);
+        addBooksTab.add(showScroll);
+        addBooksTab.add(addBook);
+        addBooksTab.add(deleteBook);
+        addBooksTab.add(changeBook);
+        addBooksTab.add(whichBook);
+        addBooksTab.add(changeName);
+        addBooksTab.add(AbleToCheck);
+        addBooksTab.add(changeAuthorLabel);
+        addBooksTab.add(changeAuthor);
+        addBooksTab.add(saveBooks);
+        addBooksTab.add(loadBooks);
 
         // add compnents under the "Search Books" tab
-        panel2.add(searchScroll);
-        panel2.add(search);
+        searchBooksTab.add(searchScroll);
+        searchBooksTab.add(search);
 
         /* add the TabbedPane (which contains the panels that
         contain all the components) to the JFrame window */
@@ -252,8 +216,8 @@ public class LibraryFrontEnd {
         f.setLayout(null);
 
         // set the layout of the JPanels to manual component placement
-        panel.setLayout(null);
-        panel2.setLayout(null);
+        addBooksTab.setLayout(null);
+        searchBooksTab.setLayout(null);
 
         // make the JFrame window visible
         f.setVisible(true);
