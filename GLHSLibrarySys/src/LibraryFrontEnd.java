@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class LibraryFrontEnd {
@@ -115,6 +116,8 @@ public class LibraryFrontEnd {
                     Utility.usingReader();
                     Utility.updateShowBooksTextArea(showbooks);
                 } catch (java.io.IOException a) {
+                    System.out.println("2 it didn't work");
+                } catch (java.lang.ClassNotFoundException a) {
                     System.out.println("2 it didn't work");
                 }
             }

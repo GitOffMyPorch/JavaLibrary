@@ -12,3 +12,4 @@ Version History:
       the selected keyword to be returned in the searchArray JTextArea.
 2.0.1 - bug fix, application would not close when window was closed.
 2.0.2 - minor internal restructure of code to add maintainability and readability.
+2.0.3 - changed the data save feature, no longer outputs the data to a text file, uses object Serialization now.

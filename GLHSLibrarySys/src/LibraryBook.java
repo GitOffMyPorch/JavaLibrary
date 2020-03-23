@@ -1,4 +1,4 @@
-public class LibraryBook {
+public class LibraryBook implements java.io.Serializable {
 
     private String bookName;
     private int bookNumber;
