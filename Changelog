@@ -1,4 +1,9 @@
-Version History:
+# Version History:
+
+### versioning is based upon the principle MAJOR.MINOR.PATCH/INTERNAL where:
+### MAJOR = lots of new features, completely changes the program's functionality
+### MINOR = a few new features ex: new button, text field etc...
+### PATCH/INTERNAL = fixes a bug or does some sort of internal restructure that has no effect on the end-user product
 
 1.0 - Created JavaLibrary class and JavaFrontEnd class with addBook button, changeBook button, and showbook field.
 1.1 - Added a README.md file.
