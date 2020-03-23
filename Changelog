@@ -18,3 +18,4 @@
 2.0.1 - bug fix, application would not close when window was closed.
 2.0.2 - minor internal restructure of code to add maintainability and readability.
 2.0.3 - changed the data save feature, no longer outputs the data to a text file, uses object Serialization now.
+2.0.4 - added a .exe file for ease of use for windows systems
