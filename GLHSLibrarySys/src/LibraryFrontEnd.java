@@ -18,7 +18,7 @@ public class LibraryFrontEnd {
     static boolean state;
 
     // make an ArrayList to store book objects
-     static ArrayList<LibraryBook> book = new ArrayList<LibraryBook>();
+     static ArrayList<LibraryBook> book = new ArrayList<>();
 
     // main function start
     public static void main(String args[]) {
@@ -44,6 +44,8 @@ public class LibraryFrontEnd {
         JTextField changeName = new JTextField();
         // make a field for changing the author name
         JTextField changeAuthor = new JTextField();
+        // make a field for changing the book section
+        JTextField changeSection = new JTextField();
         // make a checkbox for the AbleToBeCheckedOut functionality
         JCheckBox AbleToCheck = new JCheckBox("book check out feature");
         // make a label that says "Which Book are you changing/deleting? "
@@ -52,6 +54,8 @@ public class LibraryFrontEnd {
         JLabel changeNameLabel = new JLabel("Change Book Name: ");
         // make a label that says "Change Author Name: "
         JLabel changeAuthorLabel = new JLabel("Change Author Name: ");
+        // make a label that says "Change Book Section: "
+        JLabel changeBookSectionLabel = new JLabel("Change Book Section: ");
         // create a JPanel object that goes inside the TabbedPane
         JPanel addBooksTab = new JPanel();
         // create a second JPanel object that goes inside TabbedPane
@@ -66,18 +70,20 @@ public class LibraryFrontEnd {
         JButton search = new JButton("Search");
 
         // sets the bounds of all the components
-        loadBooks.setBounds(50, 680, 300, 50);
-        saveBooks.setBounds(50, 630, 300, 50);
+        loadBooks.setBounds(50, 750, 300, 50);
+        saveBooks.setBounds(50, 700, 300, 50);
         showScroll.setBounds(50, 50, 300, 100);
         addBook.setBounds(50, 200, 300, 50);
         changeBook.setBounds(50, 250, 300,50);
-        deleteBook.setBounds(50, 580, 300, 50);
+        deleteBook.setBounds(50, 650, 300, 50);
         whichBook.setBounds(50, 350, 300, 30);
+        changeSection.setBounds(50, 610, 300, 30);
         changeName.setBounds(50, 450, 300, 30);
         AbleToCheck.setBounds(200, 160, 300, 30);
         bookNumberLabel.setBounds(50, 320, 300, 30);
         changeNameLabel.setBounds(50, 420, 300, 30);
         changeAuthorLabel.setBounds(50, 500, 300, 30);
+        changeBookSectionLabel.setBounds(50, 580, 300, 30);
         changeAuthor.setBounds(50, 530, 300, 30);
         searchScroll.setBounds(50,100, 300, 100);
         search.setBounds(50, 200, 300, 50);
@@ -90,7 +96,7 @@ public class LibraryFrontEnd {
         */
         addBook.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                book.add(new LibraryBook("null", x, false, "null"));
+                book.add(new LibraryBook("null", x, false, "null", "null"));
                 x++;
                 Utility.updateShowBooksTextArea(showbooks);
             }
@@ -150,6 +156,7 @@ public class LibraryFrontEnd {
                 book.get(a).changeBookName(changeName.getText());
                 book.get(a).changeAuthorName(changeAuthor.getText());
                 book.get(a).changeCheckedOut(state);
+                book.get(a).changeBookSection(changeSection.getText());
 
                 Utility.updateShowBooksTextArea(showbooks);
             }
@@ -201,6 +208,8 @@ public class LibraryFrontEnd {
         addBooksTab.add(AbleToCheck);
         addBooksTab.add(changeAuthorLabel);
         addBooksTab.add(changeAuthor);
+        addBooksTab.add(changeSection);
+        addBooksTab.add(changeBookSectionLabel);
         addBooksTab.add(saveBooks);
         addBooksTab.add(loadBooks);
 
