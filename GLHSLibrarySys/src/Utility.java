@@ -46,6 +46,7 @@ public class Utility {
                 Boolean b1 = book.get(j).returnAbleToBeCheckedOut();
                 String s2 = Boolean.toString(b1);
                 oldText = oldText + "Able to be checked out: " + s2 + " \n";
+                oldText = oldText + "Book Section: " + book.get(j).returnBookSection() + " \n";
                 areaToAppendText.append(oldText);
                 areaToAppendText.setLineWrap(true);
             }

@@ -4,24 +4,15 @@ public class LibraryBook implements java.io.Serializable {
     private int bookNumber;
     private boolean ableToBeCheckedOut;
     private String authorName;
+    private String bookSection;
 
     //constructor that gives a LibraryBook object its attributes
-    LibraryBook(String bookName, int bookNumber, boolean ableToBeCheckedOut, String authorName) {
+    LibraryBook(String bookName, int bookNumber, boolean ableToBeCheckedOut, String authorName, String bookSection) {
         this.bookName = bookName;
         this.bookNumber = bookNumber;
         this.ableToBeCheckedOut = ableToBeCheckedOut;
         this.authorName = authorName;
-    }
-
-    //static display info method
-    static void display_book_info(LibraryBook book) {
-        System.out.println("The current book's name is: " + book.bookName);
-        System.out.println("The current book's library number is: " + book.bookNumber);
-        if (book.ableToBeCheckedOut == true) {
-            System.out.println("The current book is able to be checked out");
-        } else {
-            System.out.println("The current book is unable to be checked out");
-        }
+        this.bookSection = bookSection;
     }
 
     //getter for bookName
@@ -36,10 +27,14 @@ public class LibraryBook implements java.io.Serializable {
     //getter for authorName
     String returnAuthorName() { return(authorName);}
 
+    //getter for bookSection
+    String returnBookSection() { return(bookSection);}
+
+    //setter for bookSection
+    void changeBookSection(String bookSection) { this.bookSection = bookSection; }
+
     //setter for ableToBeCheckedOut
-    void changeCheckedOut(boolean ableToBeCheckedOut) {
-        this.ableToBeCheckedOut = ableToBeCheckedOut;
-    }
+    void changeCheckedOut(boolean ableToBeCheckedOut) { this.ableToBeCheckedOut = ableToBeCheckedOut; }
 
     //setter for bookName
     void changeBookName(String bookName) { this.bookName = bookName; }
