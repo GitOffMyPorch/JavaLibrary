@@ -19,3 +19,4 @@
 2.0.2 - minor internal restructure of code to add maintainability and readability.
 2.0.3 - changed the data save feature, no longer outputs the data to a text file, uses object Serialization now.
 2.0.4 - added a .exe file for ease of use for windows systems, first production release.
+2.1.0 - added a bookSection feature allowing the user to assign the Library section that the book is in.
