@@ -150,11 +150,16 @@ public class LibraryFrontEnd {
             public void actionPerformed(ActionEvent e) {
                 String i = whichBook.getText();
                 int a = Integer.parseInt(i);
-                book.get(a).changeBookName(changeName.getText());
-                book.get(a).changeAuthorName(changeAuthor.getText());
+                if (!(changeName.getText().equals(""))) {
+                    book.get(a).changeBookName(changeName.getText());
+                }
+                if (!(changeAuthor.getText().equals(""))) {
+                    book.get(a).changeAuthorName(changeAuthor.getText());
+                }
                 book.get(a).changeCheckedOut(state);
-                book.get(a).changeBookSection(changeSection.getText());
-
+                if (!(changeSection.getText().equals(""))) {
+                    book.get(a).changeBookSection(changeSection.getText());
+                }
                 Utility.updateShowBooksTextArea(showbooks);
             }
         });
@@ -210,7 +215,7 @@ public class LibraryFrontEnd {
         addBooksTab.add(saveBooks);
         addBooksTab.add(loadBooks);
 
-        // add compnents under the "Search Books" tab
+        // add components under the "Search Books" tab
         searchBooksTab.add(searchScroll);
         searchBooksTab.add(search);
 
