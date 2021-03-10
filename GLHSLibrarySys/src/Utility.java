@@ -13,7 +13,7 @@ public class Utility {
             String s2 = s1.concat("_" + book.get(i).returnBookName());
             String s3 = s2.concat("_" + book.get(i).returnAuthorName());
             String s4 = s3.concat("_" + book.get(i).returnAbleToBeCheckedOut());
-            String s5 = s4.concat("_" + "test");
+            String s5 = s4.concat("_" + book.get(i).returnBookSection());
             writer.write(s5 + "\n");
         }
         writer.close();
@@ -28,7 +28,7 @@ public class Utility {
             String name = arrayOfStr[1];
             String author = arrayOfStr[2];
             Boolean checked = Boolean.valueOf(arrayOfStr[3]);
-            String section = "test";
+            String section = arrayOfStr[4];
             //= arrayOfStr[4];
             LibraryFrontEnd.book.add(new LibraryBook(name, number, checked, author, section));
         }
